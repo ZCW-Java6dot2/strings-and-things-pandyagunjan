@@ -57,37 +57,28 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        String[] arrayIs = input.split("is");
-        String[] arrayNot = input.split("not");
+            String isStr = "is";
+            String notStr = "not";
+            int isCounter = 0;
+            int notCounter = 0;
 
-        return arrayIs.length != arrayNot.length ? false : true;
-     /*   int counterIs=0;
-        int counterNot=0;
-        String regexIS = "(is)";
-        String regexNOT = "(not)";
-        Pattern patternIs = Pattern.compile(regexIS);
-        Pattern patternNot = Pattern.compile(regexNOT);
-
-        for(int i=0 ;i < array.length ; i++) {
-            if (array.length != 1) {
-                if (array[i].contains("is"))
-                    counterIs++;
-                else if (array[i].contains("not"))
-                    counterNot++;
+            int isPos = input.indexOf(isStr);
+            int notPos = input.indexOf(notStr);
+            while (isPos >= 0) {
+                isCounter += 1;
+                isPos = input.indexOf(isStr, isPos+1);
             }
-            else
-            {
-                Matcher isMatcher = patternIs.matcher(array[i]);
-                Matcher NotMatcher = patternNot.matcher(array[i]);
-                return isMatcher.groupCount() != NotMatcher.groupCount() ? false :true;
+            while (notPos >= 0) {
+                notCounter += 1;
+                notPos = input.indexOf(notStr, notPos+1);
             }
 
-        } */
-
-
-         // return counterIs != counterNot ? false :true;
+            return isCounter!=notCounter ? false : true;
 
         }
+
+
+
 
 
     /**
