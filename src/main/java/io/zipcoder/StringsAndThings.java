@@ -1,5 +1,8 @@
 package io.zipcoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.sun.corba.se.impl.orb.ParserTable;
 
 /**
  * @author tariq
@@ -57,12 +60,28 @@ public class StringsAndThings {
         String[] array = input.split(" ");
         int counterIs=0;
         int counterNot=0;
+        String regexIS = "(is)";
+        String regexNOT = "(not)";
+        Pattern patternIs = Pattern.compile(regexIS);
+        Pattern patternNot = Pattern.compile(regexNOT);
+
         for(int i=0 ;i < array.length ; i++) {
-            if (array[i].contains("IS"))
-                counterIs++;
-            else if (array[i].contains("NOT"))
-                counterNot++;
-             }
+            if (array.length != 1) {
+                if (array[i].contains("is"))
+                    counterIs++;
+                else if (array[i].contains("not"))
+                    counterNot++;
+            }
+            else
+            {
+                Matcher isMatcher = patternIs.matcher(array[i]);
+                Matcher NotMatcher = patternNot.matcher(array[i]);
+                return isMatcher.groupCount() != NotMatcher.groupCount() ? false :true;
+            }
+
+        }
+
+
           return counterIs != counterNot ? false :true;
 
         }
@@ -95,6 +114,15 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int l = input.length();
+        int ctrTriple = 0;
+        for (int i = 0; i < l-2; i++)
+        {
+            char tmp = input.charAt(i);
+            if (tmp == input.charAt(i+1) && tmp == input.charAt(i+2))
+                ctrTriple++;
+        }
+        return ctrTriple;
+
     }
 }
