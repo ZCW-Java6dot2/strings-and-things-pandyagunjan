@@ -14,8 +14,22 @@ public class StringsAndThings {
      *           countYZ("day fez"); // Should return 2
      *           countYZ("day fyyyz"); // Should return 2
      */
-    public Integer countYZ(String input){
-        return null;
+    public Integer countYZ(String input) {
+
+        String[] array = input.split(" ");
+        int counter=0;
+        StringBuilder countYZVar = new StringBuilder();
+        for (int i = 0; i < array.length; i++) {
+            countYZVar.append(array[i].charAt(array[i].length()-1));
+        }
+
+
+     for(int j=0 ; j < countYZVar.length();j++)
+     {
+         if(countYZVar.charAt(j) == 'y' || countYZVar.charAt(j) == 'z')
+             counter++;
+     }
+       return counter;
     }
 
     /**
@@ -28,7 +42,7 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        return base.replaceAll(String.valueOf(remove), "");
     }
 
     /**
@@ -40,18 +54,36 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
-    }
+        String[] array = input.split(" ");
+        int counterIs=0;
+        int counterNot=0;
+        for(int i=0 ;i < array.length ; i++) {
+            if (array[i].contains("IS"))
+                counterIs++;
+            else if (array[i].contains("NOT"))
+                counterNot++;
+             }
+          return counterIs != counterNot ? false :true;
+
+        }
+
 
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
      * Return true if all the g's in the given string are happy.
      * example : gHappy("xxggxx") // Should return  true
      *           gHappy("xxgxx") // Should return  false
-     *           gHappy("xxggyygxx") // Should return  false
+     *           gHappy("xxggyygxx") // Should return true
      */
     public Boolean gIsHappy(String input){
-        return null;
+        String[] array = input.split(" ");
+        int counterForG=0;
+          for(int i=0 ;i < array.length ; i++) {
+            if (array[i].contains("gg"))
+                counterForG++;
+        }
+        return counterForG==0 ? false :true;
+
     }
 
 
