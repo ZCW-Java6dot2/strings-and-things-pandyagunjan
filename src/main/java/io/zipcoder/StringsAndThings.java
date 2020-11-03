@@ -57,8 +57,11 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        String[] array = input.split(" ");
-        int counterIs=0;
+        String[] arrayIs = input.split("is");
+        String[] arrayNot = input.split("not");
+
+        return arrayIs.length != arrayNot.length ? false : true;
+     /*   int counterIs=0;
         int counterNot=0;
         String regexIS = "(is)";
         String regexNOT = "(not)";
@@ -79,10 +82,10 @@ public class StringsAndThings {
                 return isMatcher.groupCount() != NotMatcher.groupCount() ? false :true;
             }
 
-        }
+        } */
 
 
-          return counterIs != counterNot ? false :true;
+         // return counterIs != counterNot ? false :true;
 
         }
 
@@ -95,6 +98,7 @@ public class StringsAndThings {
      *           gHappy("xxggyygxx") // Should return true
      */
     public Boolean gIsHappy(String input){
+
         String[] array = input.split(" ");
         int counterForG=0;
           for(int i=0 ;i < array.length ; i++) {
