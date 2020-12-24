@@ -21,6 +21,7 @@ public class StringsAndThings {
 
         String[] array = input.split(" ");
         int counter=0;
+        // As interested in just the last letter so appending last character
         StringBuilder countYZVar = new StringBuilder();
         for (int i = 0; i < array.length; i++) {
             countYZVar.append(array[i].charAt(array[i].length()-1));
@@ -45,7 +46,7 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return base.replaceAll(String.valueOf(remove), "");
+        return base.replaceAll(remove, "");
     }
 
     /**
@@ -65,11 +66,11 @@ public class StringsAndThings {
             int isPos = input.indexOf(isStr);
             int notPos = input.indexOf(notStr);
             while (isPos >= 0) {
-                isCounter += 1;
+                isCounter++;
                 isPos = input.indexOf(isStr, isPos+1);
             }
             while (notPos >= 0) {
-                notCounter += 1;
+                notCounter++;
                 notPos = input.indexOf(notStr, notPos+1);
             }
 
