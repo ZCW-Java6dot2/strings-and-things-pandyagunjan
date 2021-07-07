@@ -1,5 +1,8 @@
 package io.zipcoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.sun.corba.se.impl.orb.ParserTable;
 
 /**
  * @author tariq
@@ -14,8 +17,23 @@ public class StringsAndThings {
      *           countYZ("day fez"); // Should return 2
      *           countYZ("day fyyyz"); // Should return 2
      */
-    public Integer countYZ(String input){
-        return null;
+    public Integer countYZ(String input) {
+
+        String[] array = input.split(" ");
+        int counter=0;
+        // As interested in just the last letter so appending last character
+        StringBuilder countYZVar = new StringBuilder();
+        for (int i = 0; i < array.length; i++) {
+            countYZVar.append(array[i].charAt(array[i].length()-1));
+        }
+
+
+     for(int j=0 ; j < countYZVar.length();j++)
+     {
+         if(countYZVar.charAt(j) == 'y' || countYZVar.charAt(j) == 'z')
+             counter++;
+     }
+       return counter;
     }
 
     /**
@@ -28,7 +46,7 @@ public class StringsAndThings {
      *           removeString("Hello there", "x") // Should return "Hello there"
      */
     public String removeString(String base, String remove){
-        return null;
+        return base.replaceAll(remove, "");
     }
 
     /**
@@ -40,18 +58,47 @@ public class StringsAndThings {
      *           containsEqualNumberOfIsAndNot("noisxxnotyynotxisi") // Should return true
      */
     public Boolean containsEqualNumberOfIsAndNot(String input){
-        return null;
-    }
+            String isStr = "is";
+            String notStr = "not";
+            int isCounter = 0;
+            int notCounter = 0;
+
+            int isPos = input.indexOf(isStr);
+            int notPos = input.indexOf(notStr);
+            while (isPos >= 0) {
+                isCounter++;
+                isPos = input.indexOf(isStr, isPos+1);
+            }
+            while (notPos >= 0) {
+                notCounter++;
+                notPos = input.indexOf(notStr, notPos+1);
+            }
+
+            return isCounter!=notCounter ? false : true;
+
+        }
+
+
+
+
 
     /**
      * We'll say that a lowercase 'g' in a string is "happy" if there is another 'g' immediately to its left or right.
      * Return true if all the g's in the given string are happy.
      * example : gHappy("xxggxx") // Should return  true
      *           gHappy("xxgxx") // Should return  false
-     *           gHappy("xxggyygxx") // Should return  false
+     *           gHappy("xxggyygxx") // Should return true
      */
     public Boolean gIsHappy(String input){
-        return null;
+
+        String[] array = input.split(" ");
+        int counterForG=0;
+          for(int i=0 ;i < array.length ; i++) {
+            if (array[i].contains("gg"))
+                counterForG++;
+        }
+        return counterForG==0 ? false :true;
+
     }
 
 
@@ -63,6 +110,15 @@ public class StringsAndThings {
      *            countTriple("a") // Should return 0
      */
     public Integer countTriple(String input){
-        return null;
+        int l = input.length();
+        int ctrTriple = 0;
+        for (int i = 0; i < l-2; i++)
+        {
+            char tmp = input.charAt(i);
+            if (tmp == input.charAt(i+1) && tmp == input.charAt(i+2))
+                ctrTriple++;
+        }
+        return ctrTriple;
+
     }
 }
